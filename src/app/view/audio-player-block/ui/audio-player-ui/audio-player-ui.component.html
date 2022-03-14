@@ -1,0 +1,32 @@
+<div class="wrapper" *ngIf="currentSong !== null">
+    <div class="top-bar">
+      <i class="material-icons">expand_more</i>
+      <span>Now Playing</span>
+      <i class="material-icons">more_horiz</i>
+    </div>
+    <div class="img-area">
+      <img [src]="getCover()" alt="cover">
+    </div>
+    <div class="song-details">
+      <p class="name">{{ currentSong.name }}</p>
+      <p class="artist">{{ currentSong.author }}</p>
+    </div>
+    <div class="progress-area">
+      <div class="progress-bar">
+        <audio [currentTime]="currentTime" [src]="getAudio()"></audio>
+      </div>
+      <div class="song-timer">
+        <span class="current-time">{{ currentTime | date:"mm:ss" }}</span>
+        <span class="max-duration">{{ (currentSong?.duration ?? 0) | date:"mm:ss" }}</span>
+      </div>
+    </div> 
+    <div class="controls">
+      <i class="material-icons" title="Playlist looped">repeat</i>
+      <i (click)="movePrev()" class="material-icons">skip_previous</i>
+      <div class="play-pause" (click)="playPause()">
+        <i class="material-icons play">{{ isPlaying ? "pause" : "play_arrow" }}</i>
+      </div>
+      <i (click)="moveNext()" class="material-icons">skip_next</i>
+      <i class="material-icons">queue_music</i>
+    </div>
+</div>
