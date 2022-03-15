@@ -9,14 +9,15 @@ import { environment } from '../environments/environment';
 import { EffectsModule } from '@ngrx/effects';
 import { SongListStoreModule } from './store/song-list/song-list.store.module';
 import { AudioPlayerStoreMudule } from './store/audio-player/audio-player.store.module';
-import { VideoTimeFormatPipe } from './pipes/video-time-format.pipe';
+import { WebsiteModule } from './routing/website/website.module';
 
 @NgModule({
   declarations: [
-    AppComponent,
-    VideoTimeFormatPipe
+    AppComponent
   ],
   imports: [
+    WebsiteModule,
+
     SongListStoreModule,
     AudioPlayerStoreMudule,
 

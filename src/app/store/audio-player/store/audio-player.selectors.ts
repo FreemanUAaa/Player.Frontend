@@ -7,8 +7,6 @@ const selectFeature = createFeatureSelector<AudioPlayerState>(AudioPlayerNode);
 
 export const selectCurrnetSong = createSelector(selectFeature, (state) => state.currentSong);
 
-export const selectCurrentTime = createSelector(selectFeature, (state) => state.currentTime);
-
 export const selectIsPlaying = createSelector(selectFeature, (state) => state.isPlaying);
 
 export const selectRepeatListType = createSelector(selectFeature, (state) => state.repeatListType);

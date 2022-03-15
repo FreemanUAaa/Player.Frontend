@@ -8,7 +8,6 @@ export enum AudioPlayerActions {
     playPause = "[Audio Player] play pause",
     moveNextSuccess = "[Audio Player] move next success",
     movePrevSuccess = "[Audio Player] move prev success",
-    changeCurrnetTime = "[Audio Player] change currnet time",
     changeCurrentSong = "[Audio Player] change current song",
     changeRepeatListType = "[Audio Player] change repeat list type",
 }
@@ -24,8 +23,6 @@ export const movePrevSuccess = createAction(AudioPlayerActions.movePrevSuccess, 
 
 
 export const playPause = createAction(AudioPlayerActions.playPause);
-
-export const changeCurrnetTime = createAction(AudioPlayerActions.changeCurrnetTime, props<{ time : number }>());
 
 export const changeCurrentSong = createAction(AudioPlayerActions.changeCurrentSong, props<{ song: Song }>());
 

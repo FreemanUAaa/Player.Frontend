@@ -1,1 +1,6 @@
-<p>audio-player-block works!</p>
+<app-audio-player-ui
+    (playPause)="playPause()"
+    (changeRepeatListType)="changeRepeatListType()"
+    [isPlaying]="(isPlaying$ | async) ?? false"
+    [currentSong]="song"
+    [repeatListType]="repeatListType"></app-audio-player-ui>

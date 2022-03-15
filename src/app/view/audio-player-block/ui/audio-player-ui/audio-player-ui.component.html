@@ -5,23 +5,24 @@
       <i class="material-icons">more_horiz</i>
     </div>
     <div class="img-area">
-      <img [src]="getCover()" alt="cover">
+      <img alt="cover">
     </div>
     <div class="song-details">
       <p class="name">{{ currentSong.name }}</p>
       <p class="artist">{{ currentSong.author }}</p>
     </div>
-    <div class="progress-area">
-      <div class="progress-bar">
-        <audio [currentTime]="currentTime" [src]="getAudio()"></audio>
-      </div>
+    <div class="progress-area"
+      #progressBar 
+      (click)="changeCurrentTime($event.offsetX / progressBar.clientWidth * currentSong.duration)">
+      <audio #player (timeupdate)="timeUpdate()" src="./assets/stefania.mp3"></audio>
+      <div class="progress-bar" [style.width]="(currentTime / currentSong.duration * 100) + '%'"></div>
       <div class="song-timer">
         <span class="current-time">{{ currentTime | date:"mm:ss" }}</span>
         <span class="max-duration">{{ (currentSong?.duration ?? 0) | date:"mm:ss" }}</span>
       </div>
     </div> 
     <div class="controls">
-      <i class="material-icons" title="Playlist looped">repeat</i>
+      <i (click)="changeRepeatListType()" class="material-icons">{{ repeatListType }}</i>
       <i (click)="movePrev()" class="material-icons">skip_previous</i>
       <div class="play-pause" (click)="playPause()">
         <i class="material-icons play">{{ isPlaying ? "pause" : "play_arrow" }}</i>
