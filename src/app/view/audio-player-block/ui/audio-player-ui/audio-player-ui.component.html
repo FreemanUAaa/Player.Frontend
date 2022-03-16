@@ -1,4 +1,4 @@
-<div class="wrapper" *ngIf="currentSong !== null">
+<div class="wrapper">
     <div class="top-bar">
       <i class="material-icons">expand_more</i>
       <span>Now Playing</span>
@@ -8,17 +8,17 @@
       <img alt="cover">
     </div>
     <div class="song-details">
-      <p class="name">{{ currentSong.name }}</p>
-      <p class="artist">{{ currentSong.author }}</p>
+      <p class="name">{{ currentSong?.name }}</p>
+      <p class="artist">{{ currentSong?.author }}</p>
     </div>
     <div class="progress-area"
       #progressBar 
-      (click)="changeCurrentTime($event.offsetX / progressBar.clientWidth * currentSong.duration)">
-      <audio #player (timeupdate)="timeUpdate()" src="./assets/stefania.mp3"></audio>
-      <div class="progress-bar" [style.width]="(currentTime / currentSong.duration * 100) + '%'"></div>
+      (click)="changeCurrentTime($event.offsetX / progressBar.clientWidth * (currentSong?.duration ?? 0))">
+      <audio #player autoplay="true" (ended)="onEnded()" (timeupdate)="timeUpdate()" [src]="'./assets/stefania'+ currentSong?.id +'.mp3'"></audio>
+      <div class="progress-bar" [style.width]="(currentTime / (currentSong?.duration ?? 0) * 100) + '%'"></div>
       <div class="song-timer">
-        <span class="current-time">{{ currentTime | date:"mm:ss" }}</span>
-        <span class="max-duration">{{ (currentSong?.duration ?? 0) | date:"mm:ss" }}</span>
+        <span class="current-time">{{ currentTime | audioTimeFormater }}</span>
+        <span class="max-duration">{{ (currentSong?.duration ?? 0) | audioTimeFormater }}</span>
       </div>
     </div> 
     <div class="controls">
@@ -28,6 +28,7 @@
         <i class="material-icons play">{{ isPlaying ? "pause" : "play_arrow" }}</i>
       </div>
       <i (click)="moveNext()" class="material-icons">skip_next</i>
-      <i class="material-icons">queue_music</i>
+      <i class="material-icons" (click)="songListIsOpen = true">queue_music</i>
     </div>
+    <app-song-list-block *ngIf="songListIsOpen" (close)="songListIsOpen = false"></app-song-list-block>
 </div>

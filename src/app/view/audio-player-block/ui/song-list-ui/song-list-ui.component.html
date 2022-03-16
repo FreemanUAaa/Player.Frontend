@@ -1,0 +1,18 @@
+<div class="music-list show">
+    <div class="header">
+      <div class="row">
+        <i class= "list material-icons">queue_music</i>
+        <span>Music list</span>
+      </div>
+      <i (click)="close()" class="material-icons">close</i>
+    </div>
+    <ul>
+        <li *ngFor="let song of songs" (click)="selectSong(song)" [class]="(song === currentSong) ? 'playing' : ''">
+            <div class="row">
+              <span>{{ song.name }}</span>
+              <p>{{ song.author }}</p>
+            </div>
+            <span class="audio-duration" t-duration="3:48">{{ (song === currentSong) ? 'Playing' : (song.duration | audioTimeFormater) }}</span>
+        </li>
+    </ul>
+</div>

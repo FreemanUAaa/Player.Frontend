@@ -1,13 +1,14 @@
 import { Song } from "../../song-list/store/song-list.interfaces";
 
 export enum RepeatListType {
-    playbackShuffled = "repeat_one",
+    playbackShuffled = "shuffle",
     playlistLooped = "repeat",
-    songLooped = "shuffle",
+    songLooped = "repeat_one",
 }
 
 export interface AudioPlayerState {
     repeatListType: RepeatListType;
     currentSong: Song | null;
     isPlaying: boolean;
+    prevSongs: Song[];
 }

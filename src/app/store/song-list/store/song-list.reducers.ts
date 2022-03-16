@@ -5,7 +5,7 @@ import { SongListState } from "./song-list.interfaces";
 export const SongListNode = "SongList";
 
 export const SongListInitialState: SongListState = {
-    songs: [],
+    songs: [{ id: "1", name: "Stefania", author: "Kalosh", duration: 180 }, { id: "2", name: "Stefania", author: "Selo", duration: 180 }, { id: "3", name: "Stefania", author: "losh", duration: 180 }],
     loading: false,
     error: "",
 };

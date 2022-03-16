@@ -1,6 +1,8 @@
 <app-audio-player-ui
+    (moveNext)="moveNext()"
+    (movePrev)="movePrev()"
     (playPause)="playPause()"
     (changeRepeatListType)="changeRepeatListType()"
     [isPlaying]="(isPlaying$ | async) ?? false"
-    [currentSong]="song"
+    [currentSong]="currentSong$ | async"
     [repeatListType]="repeatListType"></app-audio-player-ui>

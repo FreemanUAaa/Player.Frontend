@@ -1,0 +1,5 @@
+<app-song-list-ui
+    [currentSong]="(currentSong$ | async) ?? null"
+    [songs]="(songs$ | async) ?? []"
+    (close)="close()"
+    (selectSong)="selectSong($event)"></app-song-list-ui>

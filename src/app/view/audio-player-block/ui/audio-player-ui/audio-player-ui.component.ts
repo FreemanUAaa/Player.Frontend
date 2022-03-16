@@ -28,6 +28,8 @@ export class AudioPlayerUiComponent {
 
   @Input() isPlaying: boolean = false;
 
+  songListIsOpen: boolean = false;
+
   currentTime: number = 0;
 
   playPause(): void {
@@ -43,10 +45,23 @@ export class AudioPlayerUiComponent {
 
   moveNext(): void {
     this.moveNextEvent.emit();
+
+    if (!this.isPlaying) {
+      this.playPauseEvent.emit();
+    }
   }
 
   movePrev(): void {
     this.movePrevEvent.emit();
+  }
+
+  onEnded(): void {
+    if (this.repeatListType === RepeatListType.songLooped) {
+      this.moveNext();
+    }
+
+    this.currentTime = 0;
+    this.playerRef?.nativeElement.play()
   }
 
   changeRepeatListType(): void {

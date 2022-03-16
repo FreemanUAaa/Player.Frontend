@@ -10,6 +10,9 @@ import { AudioTimeFormaterPipe } from './pipes/audio-time-formater/audio-time-fo
   ],
   imports: [
     CommonModule
+  ],
+  exports: [
+    AudioTimeFormaterPipe
   ]
 })
 export class AudioTimeFormaterModule { }

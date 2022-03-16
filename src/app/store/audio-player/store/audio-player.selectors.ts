@@ -5,6 +5,8 @@ import { AudioPlayerNode } from "./audio-player.reducers";
 
 const selectFeature = createFeatureSelector<AudioPlayerState>(AudioPlayerNode);
 
+export const selectPrevSongs = createSelector(selectFeature, (state) => state.prevSongs);
+
 export const selectCurrnetSong = createSelector(selectFeature, (state) => state.currentSong);
 
 export const selectIsPlaying = createSelector(selectFeature, (state) => state.isPlaying);

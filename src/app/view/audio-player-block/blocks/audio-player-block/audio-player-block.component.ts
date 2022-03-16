@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
 import { select, Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
-import { changeRepeatListType, playPause } from 'src/app/store/audio-player/store/audio-player.actions';
+import { changeRepeatListType, moveNext, movePrev, playPause } from 'src/app/store/audio-player/store/audio-player.actions';
 import { RepeatListType } from 'src/app/store/audio-player/store/audio-player.interfaces';
-import { selectIsPlaying, selectRepeatListType } from 'src/app/store/audio-player/store/audio-player.selectors';
+import { selectCurrnetSong, selectIsPlaying, selectRepeatListType } from 'src/app/store/audio-player/store/audio-player.selectors';
 import { Song } from 'src/app/store/song-list/store/song-list.interfaces';
 
 @Component({
@@ -13,7 +13,7 @@ import { Song } from 'src/app/store/song-list/store/song-list.interfaces';
 })
 export class AudioPlayerBlockComponent {
 
-  song = { id: "d", name: "Stefania", author: "Kalush", duration: 179 };
+  currentSong$: Observable<Song | null> = this.store$.pipe(select(selectCurrnetSong));
 
   isPlaying$: Observable<boolean> = this.store$.pipe(select(selectIsPlaying));
 
@@ -25,6 +25,14 @@ export class AudioPlayerBlockComponent {
 
   playPause(): void {
     this.store$.dispatch(playPause());
+  }
+
+  moveNext(): void {
+    this.store$.dispatch(moveNext());
+  }
+
+  movePrev(): void {
+    this.store$.dispatch(movePrev());
   }
 
   changeRepeatListType(): void {
